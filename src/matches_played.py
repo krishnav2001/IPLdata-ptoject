@@ -1,4 +1,5 @@
 import csv
+
 import matplotlib.pyplot as plt
 
 DEFAULT_FILE_PATH = "data/matches.csv"
@@ -11,9 +12,9 @@ def calculate(file_path):
 
     with open(file_path, newline="", encoding="utf-8") as file:
         print("File opened successfully")
-        matches = csv.DictReader(file)
+        matches_reader = csv.DictReader(file)
 
-        for match in matches:
+        for match in matches_reader:
             print(match)
             season = match["season"]
 
@@ -50,20 +51,41 @@ def plot(total_matches_played):
 
     plt.figure(figsize=(14, 7))
 
-    for team in teams:
+    colors = [
+        "red",
+        "blue",
+        "green",
+        "orange",
+        "purple",
+        "brown",
+        "pink",
+        "gray",
+        "olive",
+        "cyan",
+        "magenta",
+        "yellow",
+        "navy",
+        "teal",
+        "maroon",
+        "lime",
+        "coral",
+        "gold",
+        "indigo",
+        "turquoise",
+    ]
 
+    for index, team in enumerate(teams):
         matches_played = []
 
         for season in seasons:
-            matches_played.append(
-                total_matches_played[season].get(team, 0)
-            )
+            matches_played.append(total_matches_played[season].get(team, 0))
 
         plt.bar(
             seasons,
             matches_played,
             bottom=bottom,
-            label=team
+            label=team,
+            color=colors[index % len(colors)],
         )
 
         for i in range(len(bottom)):
@@ -77,10 +99,11 @@ def plot(total_matches_played):
 
     plt.legend(
         bbox_to_anchor=(1.02, 1),
-        loc="upper left"
+        loc="upper left",
     )
 
     plt.tight_layout()
+    plt.savefig("src/output/matches_played.png")
 
     plt.show()
 
@@ -91,7 +114,6 @@ def execute(file_path=DEFAULT_FILE_PATH):
 
 
 if __name__ == "__main__":
-
     data = execute()
 
     plot(data)

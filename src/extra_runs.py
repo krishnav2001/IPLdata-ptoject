@@ -1,21 +1,23 @@
 import csv
+
 import matplotlib.pyplot as plt
+
 
 def calculate(deliveries_path="data/deliveries.csv", matches_path="data/matches.csv"):
     total_extra_runs = {}
     match_ids = set()
 
     with open(matches_path, newline="", encoding="utf-8") as file:
-        matches = csv.DictReader(file)
+        matches_reader = csv.DictReader(file)
 
-        for match in matches:
+        for match in matches_reader:
             if match["season"] == "2016":
                 match_ids.add(match["id"])
 
     with open(deliveries_path, newline="", encoding="utf-8") as file:
-        deliveries = csv.DictReader(file)
+        deliveries_reader = csv.DictReader(file)
 
-        for delivery in deliveries:
+        for delivery in deliveries_reader:
             if delivery["match_id"] in match_ids:
                 team = delivery["bowling_team"]
                 extra_runs = int(delivery["extra_runs"])
@@ -39,6 +41,7 @@ def plot(total_extra_runs):
     plt.ylabel("Total Extra Runs")
     plt.title("Total Extra Runs Conceded by Each Team in 2016 IPL Season")
     plt.tight_layout()
+    plt.savefig("src/output/extra_runs.png")
     plt.show()
 
 
@@ -48,3 +51,8 @@ def execute(deliveries_path="data/deliveries.csv", matches_path="data/matches.cs
     The function returns a dict mapping bowling_team to total extra runs.
     """
     return calculate(deliveries_path, matches_path)
+
+
+if __name__ == "__main__":
+    data = execute()
+    plot(data)

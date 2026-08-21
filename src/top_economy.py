@@ -1,5 +1,7 @@
 import csv
+
 import matplotlib.pyplot as plt
+
 
 def calculate(deliveries_path="data/deliveries.csv", matches_path="data/matches.csv"):
     economy = {}
@@ -8,16 +10,16 @@ def calculate(deliveries_path="data/deliveries.csv", matches_path="data/matches.
     bowler_balls = {}
 
     with open(matches_path, newline="", encoding="utf-8") as file:
-        matches = csv.DictReader(file)
+        matches_reader = csv.DictReader(file)
 
-        for match in matches:
+        for match in matches_reader:
             if match["season"] == "2015":
                 match_ids.add(match["id"])
 
     with open(deliveries_path, newline="", encoding="utf-8") as file:
-        deliveries = csv.DictReader(file)
+        deliveries_reader = csv.DictReader(file)
 
-        for delivery in deliveries:
+        for delivery in deliveries_reader:
             if delivery["match_id"] in match_ids:
                 bowler = delivery["bowler"]
                 runs = int(delivery["total_runs"])
@@ -47,7 +49,7 @@ def calculate(deliveries_path="data/deliveries.csv", matches_path="data/matches.
 
 def plot(top_10_economy):
     bowlers = list(top_10_economy.keys())
-    economy_rates = list(top_10_economy.values())
+    economy_rates = sorted(list(top_10_economy.values()))
 
     plt.figure(figsize=(14, 7))
     plt.xticks(rotation=90)
@@ -56,6 +58,7 @@ def plot(top_10_economy):
     plt.ylabel("Economy Rate")
     plt.title("Economy Rate of Bowlers in 2015 IPL Season")
     plt.tight_layout()
+    plt.savefig("src/output/top_economy.png")
     plt.show()
 
 
@@ -65,3 +68,8 @@ def execute(deliveries_path="data/deliveries.csv", matches_path="data/matches.cs
     The returned dict contains up to top 10 bowlers sorted by economy ascending.
     """
     return calculate(deliveries_path, matches_path)
+
+
+if __name__ == "__main__":
+    data = execute()
+    plot(data)

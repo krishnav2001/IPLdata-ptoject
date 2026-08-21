@@ -1,6 +1,0 @@
-id,season,city,date,team1,team2,toss_winner,toss_decision,result,dl_applied,winner,win_by_runs,win_by_wickets,player_of_match,venue,umpire1,umpire2,umpire3
-1,2015,City1,2015-04-01,TeamA,TeamB,TeamA,bat,normal,0,TeamA,10,0,Player1,Venue1,U1,U2,
-2,2015,City2,2015-04-03,TeamC,TeamA,TeamC,field,normal,0,TeamC,5,0,Player2,Venue2,U3,U4,
-3,2016,City3,2016-04-05,TeamB,TeamC,TeamB,bat,normal,0,TeamB,20,0,Player3,Venue3,U5,U6,
-4,2016,City4,2016-04-07,TeamD,TeamA,TeamD,field,normal,0,TeamD,3,0,Player4,Venue4,U7,U8,
-5,2017,City5,2017-04-09,TeamA,TeamD,TeamA,bat,normal,0,TeamA,15,0,Player5,Venue5,U9,U10,

@@ -1,6 +1,0 @@
-id,season,city,date,team1,team2,toss_winner,toss_decision,result,dl_applied,winner,win_by_runs,win_by_wickets,player_of_match,venue,umpire1,umpire2,umpire3
-1,2015,Mumbai,2015-04-08,MI,CSK,MI,bat,normal,0,MI,20,0,Rohit Sharma,Wankhede,S Ravi,Aleem Dar,
-2,2015,Bangalore,2015-04-09,RCB,KKR,KKR,field,normal,0,RCB,15,0,Virat Kohli,Chinnaswamy,Rod Tucker,S Ravi,
-3,2016,Delhi,2016-04-10,MI,RCB,MI,bat,normal,0,RCB,0,6,AB de Villiers,Feroz Shah Kotla,Aleem Dar,Rod Tucker,
-4,2016,Chennai,2016-04-11,CSK,KKR,CSK,field,normal,0,CSK,5,0,MS Dhoni,Chepauk,S Ravi,Aleem Dar,
-5,2017,Hyderabad,2017-04-12,SRH,MI,SRH,bat,normal,0,MI,0,5,Rohit Sharma,Uppal,Rod Tucker,S Ravi,

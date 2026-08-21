@@ -1,4 +1,5 @@
 import csv
+
 import matplotlib.pyplot as plt
 
 FILE_PATH = "data/deliveries.csv"
@@ -8,9 +9,9 @@ def calculate():
     team_runs = {}
 
     with open(FILE_PATH, newline="", encoding="utf-8") as file:
-        deliveries = csv.DictReader(file)
+        deliveries_reader = csv.DictReader(file)
 
-        for delivery in deliveries:
+        for delivery in deliveries_reader:
             total_runs = int(delivery["total_runs"])
             team = delivery["batting_team"]
 
@@ -38,6 +39,7 @@ def plot(team_runs):
     plt.grid(axis="y", linestyle="--", alpha=0.5)
 
     plt.tight_layout()
+    plt.savefig("src/output/total_runs.png")
     plt.show()
 
 

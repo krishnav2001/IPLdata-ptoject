@@ -1,4 +1,5 @@
 import csv
+
 import matplotlib.pyplot as plt
 
 FILE_PATH = "data/umpire_country.csv"
@@ -9,12 +10,13 @@ def calculate():
     umpire_count = {}
 
     with open(FILE_PATH, newline="", encoding="utf-8") as file:
+        umpires_reader = csv.DictReader(file)
 
-        datas = csv.DictReader(file)
+        for umpire in umpires_reader:
+            country = umpire["Country"]
 
-        for data in datas:
-
-            country = data["Country"]
+            if country == "India":
+                continue
 
             if country not in umpire_count:
                 umpire_count[country] = 0
@@ -31,18 +33,14 @@ def plot(umpire_count):
 
     plt.figure(figsize=(10, 6))
 
-    plt.bar(
-        countries,
-        umpires,
-        color="skyblue",
-        edgecolor="black"
-    )
+    plt.bar(countries, umpires, color="skyblue", edgecolor="black")
 
     plt.xlabel("Country")
     plt.ylabel("Number of Umpires")
     plt.title("Number of IPL Umpires by Country")
 
     plt.tight_layout()
+    plt.savefig("src/output/countries_umpires.png")
 
     plt.show()
 
